@@ -6,19 +6,37 @@ public class Task4 {
         }
         String str1 = args[0];
         String str2 = args[1];
-        boolean ok = true;
+        boolean ok = false;
+        int i = 0, j = 0;
 
-        for (int i = 0, j = 0; i < str1.length(); i++) {
-            if (str1.charAt(i) == str2.charAt(j)){
+        while (i <= str1.length() && j < str2.length()) {
+            if (str2.charAt(j) == '*') {
+                while (j < str2.length() && str2.charAt(j) == '*')
+                    j++;
+                if (j < str2.length())
+                {
+                    int start = i;
+                    i = str1.length() - 1;
+                    while (i >= start && str1.charAt(i) != str2.charAt(j))
+                        i--;
+                    if (i < start)
+                        break;
+                }
+                else {
+                    ok = true;
+                    break;
+                }
+            }
+            else if (i < str1.length() && str1.charAt(i) == str2.charAt(j)) {
                 i++;
                 j++;
             }
-            else if (str2.charAt(j) == '*') {
-                break;
-            }
             else
-                ok = false;
+                break;
         }
-        System.out.println(ok);
+        if (i == str1.length() && j == str2.length())
+            ok = true;
+
+        System.out.println(ok ? "OK" : "KO");
     }
 }
