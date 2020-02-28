@@ -1,7 +1,7 @@
 public class Task4 {
     public static void main(String[] args) {
         if (args.length != 2){
-            System.out.println("слишком много аргументов");
+            System.out.println("Usage : java Task2 str1 str2");
             return;
         }
         String str1 = args[0];
